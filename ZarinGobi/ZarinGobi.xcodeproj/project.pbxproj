@@ -60,9 +60,9 @@
 			isa = PBXGroup;
 			children = (
 				D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */,
-				D4C20E1628F1442B00182779 /* HomeView.swift */,
-				D4FF8A3628F1497D00FE6807 /* AmountInputView.swift */,
-				D4FF8A3828F149BD00FE6807 /* ShowPriceView.swift */,
+				D4FF8A3A28F14A0300FE6807 /* Views */,
+				D4FF8A3B28F14A1A00FE6807 /* Models */,
+				D4FF8A3C28F14A6A00FE6807 /* FetchManagers */,
 				D4C20E1828F1442B00182779 /* Assets.xcassets */,
 				D4C20E1D28F1442B00182779 /* Persistence.swift */,
 				D4C20E1F28F1442B00182779 /* ZarinGobi.xcdatamodeld */,
@@ -77,6 +77,30 @@
 				D4C20E1B28F1442B00182779 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D4FF8A3A28F14A0300FE6807 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4C20E1628F1442B00182779 /* HomeView.swift */,
+				D4FF8A3628F1497D00FE6807 /* AmountInputView.swift */,
+				D4FF8A3828F149BD00FE6807 /* ShowPriceView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4FF8A3B28F14A1A00FE6807 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D4FF8A3C28F14A6A00FE6807 /* FetchManagers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FetchManagers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
