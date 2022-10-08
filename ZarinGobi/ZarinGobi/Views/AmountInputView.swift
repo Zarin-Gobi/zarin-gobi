@@ -13,28 +13,48 @@ struct AmountInputView: View {
     let testProductImages: [String] = ["rice1", "rice2"]
     
     @State var productCount: String = ""
+    @State private var contentSize: CGSize = .zero
+    @State var shouldScroll: Bool = false
     
     
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack{
-                    ForEach(testProductNames, id: \.self) { title in
-                        Button(action: {
-                            
-                        }, label: {
-                            Text("\(title)")
-                        })
-                        .foregroundColor(.black)
-                        .padding([.leading, .trailing], 14)
-                        .padding([.top, .bottom], 8)
+                HStack {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(testProductNames, id: \.self) { title in
+                                Button(action: {
+                                    
+                                }, label: {
+                                    Text("\(title)")
+                                        .foregroundColor(.black)
+                                        .padding([.leading, .trailing], 14)
+                                        .padding([.top, .bottom], 8)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.gray, lineWidth: 1)
+                                        )
+                                })
+                                
+                            }
+                        }
+                        .padding()
+                        .background(.white)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.black, lineWidth: 1)
-                        )
+                            GeometryReader { geo in
+                            Color.clear.onAppear {
+                                contentSize = geo.size
+                                if contentSize.width >= UIScreen.main.bounds.width {
+                                    shouldScroll = true
+                                }
+                            }
+                        })
                         
                     }
+                    .simultaneousGesture(DragGesture(minimumDistance: shouldScroll ? 20 : 0), including: .all)
+                    .frame(maxWidth: contentSize.width, maxHeight: 63)
                 }
                 
                 Image("")
