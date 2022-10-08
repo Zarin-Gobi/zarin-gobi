@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7977A21D28F167A400B4D837 /* FoodButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A21C28F167A400B4D837 /* FoodButtonView.swift */; };
+		7977A21F28F172B100B4D837 /* FoodButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A21E28F172B100B4D837 /* FoodButtonView.swift */; };
 		D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */; };
 		D4C20E1728F1442B00182779 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1628F1442B00182779 /* HomeView.swift */; };
 		D4C20E1928F1442B00182779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C20E1828F1442B00182779 /* Assets.xcassets */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7977A21C28F167A400B4D837 /* FoodButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonView.swift; sourceTree = "<group>"; };
+		7977A21E28F172B100B4D837 /* FoodButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonView.swift; sourceTree = "<group>"; };
 		D4C20E1128F1442B00182779 /* ZarinGobi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZarinGobi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZarinGobiApp.swift; sourceTree = "<group>"; };
 		D4C20E1628F1442B00182779 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C20E1628F1442B00182779 /* HomeView.swift */,
-				7977A21C28F167A400B4D837 /* FoodButtonView.swift */,
+				7977A21E28F172B100B4D837 /* FoodButtonView.swift */,
 				D4FF8A3628F1497D00FE6807 /* AmountInputView.swift */,
 				D4FF8A3828F149BD00FE6807 /* ShowPriceView.swift */,
 			);
@@ -180,9 +180,9 @@
 				D4C20E1728F1442B00182779 /* HomeView.swift in Sources */,
 				D4FF8A3728F1497D00FE6807 /* AmountInputView.swift in Sources */,
 				D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */,
+				7977A21F28F172B100B4D837 /* FoodButtonView.swift in Sources */,
 				D4C20E2128F1442B00182779 /* ZarinGobi.xcdatamodeld in Sources */,
 				D4FF8A3928F149BD00FE6807 /* ShowPriceView.swift in Sources */,
-				7977A21D28F167A400B4D837 /* FoodButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
