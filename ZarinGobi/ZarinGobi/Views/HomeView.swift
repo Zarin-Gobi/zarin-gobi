@@ -22,12 +22,12 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    //TODO: 매달린 자린고비 Image
-                    //Image(named: ??)
+                    
                 }
                 
                 //TODO: - 자린고비 이미지
                 //Image(named: ??)
+                
                 
                 
             }
