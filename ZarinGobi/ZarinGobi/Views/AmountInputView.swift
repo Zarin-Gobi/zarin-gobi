@@ -65,8 +65,19 @@ struct AmountInputView: View {
                         .padding(.leading, 7)
                 }.padding(.top, 48)
                 
+                Spacer()
                 
-                
+                Button(action: {
+                    
+                }, label: {
+                    Text("결과 보기")
+                        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 56, alignment: .center)
+                        .foregroundColor(.white)
+                })
+                .background(.gray)
+                .cornerRadius(12)
+                .padding([.leading, .trailing], 16)
+                .padding(.bottom, 40)
                 
                 
             }
