@@ -8,8 +8,44 @@
 import SwiftUI
 
 struct AmountInputView: View {
+    
+    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
+    let testProductImages: [String] = ["rice1", "rice2"]
+    
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                HStack{
+                    ForEach(testProductNames, id: \.self) { title in
+                        Button(action: {
+                            
+                        }, label: {
+                            Text("\(title)")
+                        })
+                        .foregroundColor(.black)
+                        .padding([.leading, .trailing], 14)
+                        .padding([.top, .bottom], 8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
+                        
+                    }
+                }
+                
+                
+                
+                
+                
+                
+            }
+        }
+    }
+    
+    private func clickedProductButton() {
+        
     }
 }
 
