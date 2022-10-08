@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */; };
-		D4C20E1728F1442B00182779 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1628F1442B00182779 /* ContentView.swift */; };
+		D4C20E1728F1442B00182779 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1628F1442B00182779 /* HomeView.swift */; };
 		D4C20E1928F1442B00182779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C20E1828F1442B00182779 /* Assets.xcassets */; };
 		D4C20E1C28F1442B00182779 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C20E1B28F1442B00182779 /* Preview Assets.xcassets */; };
 		D4C20E1E28F1442B00182779 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1D28F1442B00182779 /* Persistence.swift */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		D4C20E1128F1442B00182779 /* ZarinGobi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZarinGobi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZarinGobiApp.swift; sourceTree = "<group>"; };
-		D4C20E1628F1442B00182779 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4C20E1628F1442B00182779 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D4C20E1828F1442B00182779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4C20E1B28F1442B00182779 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D4C20E1D28F1442B00182779 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */,
-				D4C20E1628F1442B00182779 /* ContentView.swift */,
+				D4C20E1628F1442B00182779 /* HomeView.swift */,
 				D4C20E1828F1442B00182779 /* Assets.xcassets */,
 				D4C20E1D28F1442B00182779 /* Persistence.swift */,
 				D4C20E1F28F1442B00182779 /* ZarinGobi.xcdatamodeld */,
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4C20E1E28F1442B00182779 /* Persistence.swift in Sources */,
-				D4C20E1728F1442B00182779 /* ContentView.swift in Sources */,
+				D4C20E1728F1442B00182779 /* HomeView.swift in Sources */,
 				D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */,
 				D4C20E2128F1442B00182779 /* ZarinGobi.xcdatamodeld in Sources */,
 			);
