@@ -35,6 +35,12 @@ struct AmountInputView: View {
                     }
                 }
                 
+                Image(systemName: "heart")
+                    .resizable()
+                    .frame(width: 209, height: 209)
+                    .background(.gray)
+                    .padding(.top, 52)
+                    
                 
                 
                 
