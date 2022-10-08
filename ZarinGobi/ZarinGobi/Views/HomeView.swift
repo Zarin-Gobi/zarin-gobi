@@ -12,23 +12,22 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack{
-                HStack{
-                    VStack(alignment: .leading){
-                        Text("자린고비가")
-                        Text("알려준다")
+                ZStack{
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text("자린고비가")
+                            Text("알려준다")
+                        }
+                        .font(.system(size: 48, weight: .bold))
+                        .position(x: 100, y: 100)
+                        .padding(.leading, 31)
+                        
+                        Spacer()
                     }
-                    .font(.system(size: 48, weight: .bold))
-                    .padding(31)
-                    
-                    Spacer()
-                    
-                    
+                    Image("zaringobi")
+                        .resizable()
+                        
                 }
-                
-                //TODO: - 자린고비 이미지
-                //Image(named: ??)
-                
-                
                 
             }
         }

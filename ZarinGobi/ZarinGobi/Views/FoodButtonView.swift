@@ -6,7 +6,3 @@
 //
 
 import Foundation
-
-enum FoodButtonView: String {
-    case
-}

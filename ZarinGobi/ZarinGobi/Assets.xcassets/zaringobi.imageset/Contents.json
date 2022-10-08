@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Stone.jpg",
+      "filename" : "HomeView.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "HomeView@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "HomeView@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
