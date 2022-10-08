@@ -31,7 +31,7 @@ struct HomeView: View {
                     Image("zaringobi")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding(.vertical, -10)
+                        .padding(.bottom, -10)
                 }
                 
                 LazyVGrid(columns: columns) {

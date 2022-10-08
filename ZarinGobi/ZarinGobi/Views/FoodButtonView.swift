@@ -13,7 +13,7 @@ struct FoodButtonView: View {
     
     var body: some View {
         NavigationLink {
-            EmptyView()
+            AmountInputView()
         } label: {
             Text(title)
         }
