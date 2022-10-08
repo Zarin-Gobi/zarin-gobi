@@ -12,7 +12,8 @@ struct AmountInputView: View {
     let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
     let testProductImages: [String] = ["rice1", "rice2"]
     
-    @State var productCount: String = ""
+    @State var userInputProductCount: String = ""
+    @State var userInputProductPrice: String = ""
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
     
@@ -24,21 +25,7 @@ struct AmountInputView: View {
                 HStack {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(testProductNames, id: \.self) { title in
-                                Button(action: {
-                                    
-                                }, label: {
-                                    Text("\(title)")
-                                        .foregroundColor(.black)
-                                        .padding([.leading, .trailing], 14)
-                                        .padding([.top, .bottom], 8)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.gray, lineWidth: 1)
-                                        )
-                                })
-                                
-                            }
+                            SelectProductButton(productNames: testProductNames)
                         }
                         .padding()
                         .background(.white)
@@ -63,27 +50,9 @@ struct AmountInputView: View {
                     .background(.gray)
                     .padding(.top, 52)
                 
-                HStack {
-                    TextField(text: $productCount, label: {
-                        Text("개수가 몇개냐?")
-                            .foregroundColor(.gray)
-                    })
-                    .frame(width: 124, height: 24)
-                    .keyboardType(.decimalPad)
-                    Text("개")
-                        .padding(.leading, 7)
-                }.padding(.top, 68)
+                MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 68)
                 
-                HStack {
-                    TextField(text: $productCount, label: {
-                        Text("얼마냐?")
-                            .foregroundColor(.gray)
-                    })
-                    .frame(width: 124, height: 24)
-                    .keyboardType(.decimalPad)
-                    Text("원")
-                        .padding(.leading, 7)
-                }.padding(.top, 48)
+                MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 48)
                 
                 Spacer()
                 
@@ -104,6 +73,8 @@ struct AmountInputView: View {
         }
     }
     
+    
+    
     private func clickedProductButton() {
         
     }
@@ -112,5 +83,51 @@ struct AmountInputView: View {
 struct AmountInputView_Previews: PreviewProvider {
     static var previews: some View {
         AmountInputView()
+    }
+}
+
+
+struct MakeUserInputTextField: View {
+    @Binding var productCount: String
+    let textFieldHint: String
+    let textFieldUnit: String
+    
+    var body: some View {
+        HStack {
+            TextField(text: $productCount, label: {
+                Text("\(textFieldHint)")
+                    .foregroundColor(.gray)
+            })
+            .frame(width: 124, height: 24)
+            .keyboardType(.decimalPad)
+            Text("\(textFieldUnit)")
+                .padding(.leading, 7)
+        }
+    }
+}
+
+struct SelectProductButton: View {
+    let productNames: [String]
+    
+    var body: some View {
+        ForEach(productNames, id: \.self) { title in
+            Button(action: {
+                
+            }, label: {
+                Text("\(title)")
+                    .foregroundColor(.black)
+                    .padding([.leading, .trailing], 14)
+                    .padding([.top, .bottom], 8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+            })
+            
+        }
+
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .frame(height: 56)
+        .background(Rectangle().foregroundColor(.white))
     }
 }
