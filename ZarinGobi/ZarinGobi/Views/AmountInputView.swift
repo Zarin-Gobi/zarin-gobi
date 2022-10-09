@@ -13,30 +13,31 @@ struct AmountInputView: View {
     @State var userInputProductPrice: String = ""
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
+    @State var clickedButtonIndex: Int = 0
     @FocusState private var showKeyboard: Bool
     
     let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
-    let testProductImages: [String] = ["rice1", "rice2"]
+    let testProductImages: [String] = ["heart", "camera.macro"]
     let categoryTitle: String = "즉석밥"
     
     
     var body: some View {
         
         VStack {
-            customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize)
+            customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize, clickedButtonIndex: $clickedButtonIndex)
             Divider()
             
             ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
-                            Image("")
+                            Image(systemName: "\(testProductImages[clickedButtonIndex])")
                                 .resizable()
                                 .frame(width: 240, height: 240)
                                 .background(.gray)
                                 .padding(.top, 12)
         
-                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개", showKeyboard: $showKeyboard).padding(.top, 32)
+                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개", textFieldIsFocused: showKeyboard, showKeyboard: $showKeyboard).padding(.top, 32)
         
-                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원", showKeyboard: $showKeyboard).padding(.top, 61)
+                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원", textFieldIsFocused: showKeyboard, showKeyboard: $showKeyboard).padding(.top, 61)
         
                             Spacer(minLength: 140)
                             
@@ -59,9 +60,11 @@ struct AmountInputView: View {
     
     
     
-    private func clickedProductButton() {
-        
-    }
+    
+}
+
+private func clickedProductButton(id: Int, isSelected: Bool) {
+    
 }
 
 struct AmountInputView_Previews: PreviewProvider {
@@ -76,6 +79,7 @@ struct MakeUserInputTextField: View {
     
     let textFieldHint: String
     let textFieldUnit: String
+    var textFieldIsFocused: Bool
     
     var showKeyboard: FocusState<Bool>.Binding
      
@@ -91,7 +95,7 @@ struct MakeUserInputTextField: View {
                 .focused(showKeyboard)
                 
                 Rectangle()
-                    .fill(Color("DeactivateTextfieldColor"))
+                    .fill(textFieldIsFocused ? .black : Color("DeactivateTextfieldColor"))
                     .frame(width: 132, height: 4)
                     .offset(x: 0, y: 25)
             }
@@ -105,32 +109,32 @@ struct MakeUserInputTextField: View {
 // 카데고리 안에서 세부 품목을 고를 수 있는 버튼
 struct SelectProductButton: View {
     let productNames: [String]
+    let index: Int
+    
+    @State var isButtonSelected: Bool = false
+    @Binding var clickedButtonIndex: Int
     
     var body: some View {
+        Button(action: {
+            clickedButtonIndex = index
+            isButtonSelected = true
+        }, label: {
+            Text("\(productNames[index])")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(clickedButtonIndex == index ? .white : .gray)
+                .padding([.leading, .trailing], 14)
+                .padding([.top, .bottom], 8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(clickedButtonIndex == index ? .black : Color.gray, lineWidth: 1)
+                )
+        })
+        .id(index)
+        .background(clickedButtonIndex == index ? .black : .white)
+        .cornerRadius(20)
+        .padding(.bottom, 12)
+        .padding(.top, 16)
         
-        ForEach(0..<productNames.count) { index in
-            Button(action: {
-                
-            }, label: {
-                Text("\(productNames[index])")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.black)
-                    .padding([.leading, .trailing], 14)
-                    .padding([.top, .bottom], 8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            })
-            .id(index)
-            .padding(.bottom, 12)
-            .padding(.top, 16)
-            
-        }
-        
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .frame(height: 56)
-        .background(Rectangle().foregroundColor(.white))
     }
 }
 
@@ -139,8 +143,11 @@ struct customNavigationBar: View {
     let testProductNames: [String]
     let categoryTitle: String
     
+    //let
+    
     @Binding var shouldScroll: Bool
     @Binding var contentSize: CGSize
+    @Binding var clickedButtonIndex: Int
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -169,7 +176,12 @@ struct customNavigationBar: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        SelectProductButton(productNames: testProductNames)
+                        ForEach(0..<testProductNames.count) { index in
+                            SelectProductButton(productNames: testProductNames, index: index, clickedButtonIndex: $clickedButtonIndex)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(Rectangle().foregroundColor(.white))
                     }
                     .padding(1)
                     .background(.white)
