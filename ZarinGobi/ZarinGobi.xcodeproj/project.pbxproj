@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7977A21F28F172B100B4D837 /* FoodButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A21E28F172B100B4D837 /* FoodButtonView.swift */; };
+		7977A22128F1A3F300B4D837 /* FoodButtonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A22028F1A3F300B4D837 /* FoodButtonName.swift */; };
+		7977A22328F2699F00B4D837 /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7977A22228F2699F00B4D837 /* ChosunCentennial_otf.otf */; };
 		D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */; };
 		D4C20E1728F1442B00182779 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1628F1442B00182779 /* HomeView.swift */; };
 		D4C20E1928F1442B00182779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4C20E1828F1442B00182779 /* Assets.xcassets */; };
@@ -18,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7977A21E28F172B100B4D837 /* FoodButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonView.swift; sourceTree = "<group>"; };
+		7977A22028F1A3F300B4D837 /* FoodButtonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonName.swift; sourceTree = "<group>"; };
+		7977A22228F2699F00B4D837 /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
+		7977A22428F26A3C00B4D837 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D4C20E1128F1442B00182779 /* ZarinGobi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZarinGobi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZarinGobiApp.swift; sourceTree = "<group>"; };
 		D4C20E1628F1442B00182779 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -59,8 +66,10 @@
 		D4C20E1328F1442B00182779 /* ZarinGobi */ = {
 			isa = PBXGroup;
 			children = (
+				7977A22428F26A3C00B4D837 /* Info.plist */,
 				D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */,
 				D4FF8A3A28F14A0300FE6807 /* Views */,
+				7977A22228F2699F00B4D837 /* ChosunCentennial_otf.otf */,
 				D4FF8A3B28F14A1A00FE6807 /* Models */,
 				D4FF8A3C28F14A6A00FE6807 /* FetchManagers */,
 				D4C20E1828F1442B00182779 /* Assets.xcassets */,
@@ -83,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				D4C20E1628F1442B00182779 /* HomeView.swift */,
+				7977A22028F1A3F300B4D837 /* FoodButtonName.swift */,
+				7977A21E28F172B100B4D837 /* FoodButtonView.swift */,
 				D4FF8A3628F1497D00FE6807 /* AmountInputView.swift */,
 				D4FF8A3828F149BD00FE6807 /* ShowPriceView.swift */,
 			);
@@ -161,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7977A22328F2699F00B4D837 /* ChosunCentennial_otf.otf in Resources */,
 				D4C20E1C28F1442B00182779 /* Preview Assets.xcassets in Resources */,
 				D4C20E1928F1442B00182779 /* Assets.xcassets in Resources */,
 			);
@@ -177,6 +189,8 @@
 				D4C20E1728F1442B00182779 /* HomeView.swift in Sources */,
 				D4FF8A3728F1497D00FE6807 /* AmountInputView.swift in Sources */,
 				D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */,
+				7977A22128F1A3F300B4D837 /* FoodButtonName.swift in Sources */,
+				7977A21F28F172B100B4D837 /* FoodButtonView.swift in Sources */,
 				D4C20E2128F1442B00182779 /* ZarinGobi.xcdatamodeld in Sources */,
 				D4FF8A3928F149BD00FE6807 /* ShowPriceView.swift in Sources */,
 			);
@@ -310,6 +324,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZarinGobi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +355,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZarinGobi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

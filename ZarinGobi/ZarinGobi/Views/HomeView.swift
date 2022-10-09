@@ -9,80 +9,59 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
+    
+    let buttons: [FoodButtonName] = [.bab, .ham, .egg, .chamchi, .mandu, .gimJaban, .bongjiRamen, .cola, .water]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            ZStack {
+                Image("Background")
+                    .resizable()
+                    .padding(.vertical, -50.0)
+                VStack{
+                    ZStack{
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text("자린고비가")
+                                    .background( GeometryReader { geo in
+                                        Path { path in
+                                            path.move(to: CGPoint(x: 0, y: geo.size.height - 10))
+                                            path.addLine(to: CGPoint(x: geo.size.width - 45, y: geo.size.height-5))
+                                        }
+                                        .stroke(style: StrokeStyle(lineWidth: 20)) // adjust to your liking
+                                        //TODO: 언더라인 색상 변경 해야 함
+                                        .foregroundColor(FoodButtonName.egg.backgroundColor)
+                                    })
+                                Text("알려준다")
+                            }
+                            .font(.custom("ChosunCentennial", size: 48))
+                            .position(x: 100, y: 85)
+                            .padding(.leading, 31)
+                            
+                            Spacer()
+                        }
+                        Image("HomeViewImage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.bottom, -10)
                     }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    
+                    LazyVGrid(columns: columns) {
+                        ForEach(buttons, id: \.self) { button in
+                            FoodButtonView(title: button.title, button: button)
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom)
+                    
                 }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        HomeView()
     }
 }
