@@ -15,6 +15,7 @@ struct AmountInputView: View {
     @State var shouldScroll: Bool = false
     @FocusState private var showKeyboard: Bool
     @State var goodCodes: [Int] = []
+    @State var selectedButtonIndex = 0
     @ObservedObject var priceManager: APIManger
     
     @State var testProductNames: [String] = []
@@ -29,7 +30,7 @@ struct AmountInputView: View {
     var body: some View {
         
         VStack {
-            customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize)
+            customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize, selectedButtonIndex: $selectedButtonIndex)
             Divider()
             
             ScrollView(.vertical, showsIndicators: false) {
@@ -46,7 +47,7 @@ struct AmountInputView: View {
         
                             Spacer(minLength: 140)
                             
-                            ShowResultButton(selectedCode: goodCodes[0],totalAmount: $userInputProductCount, totalPrice: $userInputProductPrice, priceManager: self.priceManager)
+                            ShowResultButton(goodCode: goodCodes,totalAmount: $userInputProductCount, totalPrice: $userInputProductPrice, selectedButtonIndex: $selectedButtonIndex, priceManager: self.priceManager)
                             
                             Spacer(minLength: 40)
             
@@ -112,32 +113,29 @@ struct MakeUserInputTextField: View {
 // 카데고리 안에서 세부 품목을 고를 수 있는 버튼
 struct SelectProductButton: View {
     let productNames: [String]
+    let index: Int
+    @Binding var selectedButtonIndex: Int
     
     var body: some View {
+        Button(action: {
+            selectedButtonIndex = index
+        }, label: {
+            Text("\(productNames[index])")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(selectedButtonIndex == index ? .white : .gray)
+                .padding([.leading, .trailing], 14)
+                .padding([.top, .bottom], 8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(selectedButtonIndex == index ? .black : .gray, lineWidth: 1)
+                )
+        })
+        .id(index)
+        .background(selectedButtonIndex == index ? .black : .white)
+        .cornerRadius(20)
+        .padding(.bottom, 12)
+        .padding(.top, 16)
         
-        ForEach(0..<productNames.count) { index in
-            Button(action: {
-                
-            }, label: {
-                Text("\(productNames[index])")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.black)
-                    .padding([.leading, .trailing], 14)
-                    .padding([.top, .bottom], 8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-            })
-            .id(index)
-            .padding(.bottom, 12)
-            .padding(.top, 16)
-            
-        }
-        
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .frame(height: 56)
-        .background(Rectangle().foregroundColor(.white))
     }
 }
 
@@ -148,6 +146,7 @@ struct customNavigationBar: View {
     
     @Binding var shouldScroll: Bool
     @Binding var contentSize: CGSize
+    @Binding var selectedButtonIndex: Int
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -176,7 +175,12 @@ struct customNavigationBar: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        SelectProductButton(productNames: testProductNames)
+                        ForEach(0..<testProductNames.count) { index in
+                            SelectProductButton(productNames: testProductNames, index: index, selectedButtonIndex: $selectedButtonIndex)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(Rectangle().foregroundColor(.white))
                     }
                     .padding(1)
                     .background(.white)
@@ -203,18 +207,22 @@ struct customNavigationBar: View {
 
 struct ShowResultButton: View {
     
-    @State var selectedCode: Int = 0
+
+    
+   
     @State var userPrice: Int = 0
+    @State var goodCode: [Int] = []
     
     @Binding var totalAmount: String
     @Binding var totalPrice: String
+    @Binding var selectedButtonIndex: Int
     
     @ObservedObject var priceManager: APIManger
     
     
     
     var body: some View {
-        NavigationLink(destination: ShowPriceView(tempPrice: getUserPrice(totalAmount, totalPrice, selectedCode), tempLowPrice: self.priceManager.lowestPrice, tempHighPrice: priceManager.hightestPrice), label: {
+        NavigationLink(destination: ShowPriceView(tempPrice: getUserPrice(totalAmount, totalPrice, goodCode, selectedButtonIndex), tempLowPrice: self.priceManager.lowestPrice, tempHighPrice: priceManager.hightestPrice), label: {
             Text("결과 보기")
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
                 .foregroundColor(.white)
@@ -225,10 +233,11 @@ struct ShowResultButton: View {
         
     }
     
-    public func getUserPrice(_ totalAmount: String,  _ totalPrice: String, _ selectedCode: Int) -> Int{
+    public func getUserPrice(_ totalAmount: String,  _ totalPrice: String, _ goodCode : [Int], _ selectedButtonIndex: Int) -> Int{
         guard totalAmount != "", totalPrice != "" else{
             return 0
         }
+        let selectedCode =  goodCode[selectedButtonIndex]
         self.priceManager.loadData(selectedCode)
         
         return Int(totalPrice)! / Int(totalAmount)!
