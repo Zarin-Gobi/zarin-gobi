@@ -98,14 +98,16 @@ struct ShowPriceView: View {
                                 Triangle()
                                     .fill(Color.underBarYellow).opacity(0.5)
                                     .frame(width:29,height: 29)
-                                    .offset(x:max(viewWidth*0.91*(percentage-0.5),-viewWidth*0.91*0.5-15))
+                                    .offset(x:max(viewWidth*0.91*(percentage-0.5),-viewWidth*0.91*0.5))
                             } else {
                                 Triangle()
                                     .fill(Color.triangleYellow)
                                     .frame(width:29,height: 29)
-                                .offset(x:min(viewWidth*0.91*(percentage-0.5)-15,viewWidth*0.91*0.5-15))                        }
+                                .offset(x:min(viewWidth*0.91*(percentage-0.5)+15,viewWidth*0.91*0.5))
+
+                            }
                             Image("Line")
-                            HStack(alignment: .center, spacing: viewWidth*0.75) {
+                            HStack(alignment: .center, spacing: viewWidth*0.72) {
                                 Text("싼 거")
                                     .font(.custom("ChosunCentennial", size: 14))
                                 Text("비싼 거")
@@ -153,19 +155,19 @@ struct ShowPriceView: View {
                                 .frame(width: viewWidth*0.91, height: viewHeight*0.42)
                                 .padding(.bottom,50)
                         } else if percentage <= 0.3{
-                            Image("soso")
+                            Image("buy")
                                 .resizable()
                                 .frame(width: viewWidth*0.91, height: viewHeight*0.42)
                                 .padding(.bottom,50)
                         } else {
-                            Image("buy")
+                            Image("soso")
                                 .resizable()
                                 .frame(width: viewWidth*0.91, height: viewHeight*0.42)
                                 .padding(.bottom,50)
                         }
                         
                     }
-                }
+                }.padding([.leading, .trailing], 16)
                 .navigationBarHidden(true)
             }
         }
