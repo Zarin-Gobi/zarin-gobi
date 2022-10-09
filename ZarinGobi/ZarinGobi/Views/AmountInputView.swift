@@ -14,11 +14,17 @@ struct AmountInputView: View {
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
     @FocusState private var showKeyboard: Bool
+    @State var goodCodes: [Int] = []
+    @ObservedObject var priceManager: APIManger
     
-    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
+    @State var testProductNames: [String] = []
+//    @State var testProductImages: [String] = []
+    @State var categoryTitle: String = ""
+    
+//    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
     let testProductImages: [String] = ["rice1", "rice2"]
-    let categoryTitle: String = "즉석밥"
-    
+//    let categoryTitle: String = "즉석밥"
+//
     
     var body: some View {
         
@@ -40,7 +46,7 @@ struct AmountInputView: View {
         
                             Spacer(minLength: 140)
                             
-                            ShowResultButton()
+                            ShowResultButton(selectedCode: goodCodes[0],totalAmount: $userInputProductCount, totalPrice: $userInputProductPrice, priceManager: self.priceManager)
                             
                             Spacer(minLength: 40)
             
@@ -49,6 +55,7 @@ struct AmountInputView: View {
                         .navigationTitle("test").navigationBarTitleDisplayMode(.inline)
             
                     }
+            
         }
         .navigationBarHidden(true)
         .onTapGesture {
@@ -66,7 +73,7 @@ struct AmountInputView: View {
 
 struct AmountInputView_Previews: PreviewProvider {
     static var previews: some View {
-        AmountInputView()
+        AmountInputView(priceManager: APIManger())
     }
 }
 
@@ -196,8 +203,18 @@ struct customNavigationBar: View {
 
 struct ShowResultButton: View {
     
+    @State var selectedCode: Int = 0
+    @State var userPrice: Int = 0
+    
+    @Binding var totalAmount: String
+    @Binding var totalPrice: String
+    
+    @ObservedObject var priceManager: APIManger
+    
+    
+    
     var body: some View {
-        NavigationLink(destination: ShowPriceView(), label: {
+        NavigationLink(destination: ShowPriceView(tempPrice: getUserPrice(totalAmount, totalPrice, selectedCode), tempLowPrice: self.priceManager.lowestPrice, tempHighPrice: priceManager.hightestPrice), label: {
             Text("결과 보기")
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
                 .foregroundColor(.white)
@@ -205,7 +222,15 @@ struct ShowResultButton: View {
                 .cornerRadius(12)
                 .padding([.leading, .trailing], 16)
         })
-
         
+    }
+    
+    public func getUserPrice(_ totalAmount: String,  _ totalPrice: String, _ selectedCode: Int) -> Int{
+        guard totalAmount != "", totalPrice != "" else{
+            return 0
+        }
+        self.priceManager.loadData(selectedCode)
+        
+        return Int(totalPrice)! / Int(totalAmount)!
     }
 }
