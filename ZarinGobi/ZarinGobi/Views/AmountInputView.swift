@@ -132,7 +132,7 @@ struct AmountInputView: View {
                             
                             Spacer(minLength: 140)
                             
-                            NavigationLink(destination: ShowPriceView(priceManager: priceManager, tempPrice: getUserPrice(userInputProductCount, userInputProductPrice)), label: {
+                            NavigationLink(destination: ShowPriceView(priceManager: priceManager, tempPrice: getUserPrice(userInputProductCount, userInputProductPrice),itemName: $testProductNames[selectedButtonIndex]), label: {
                                 Text("결과 보기")
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
                                     .foregroundColor(.white)

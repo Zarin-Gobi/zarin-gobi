@@ -18,7 +18,7 @@ struct ShowPriceView: View {
     @State var tempLowPrice: Int = 0
     @State var tempHighPrice: Int = 0
     
-
+    @Binding var itemName: String
     
     // 임시 받아온 값
     
@@ -30,7 +30,7 @@ struct ShowPriceView: View {
             let viewHeight = geo.size.height
             
             VStack() {
-                CustomNavigationBar(categoryTitle: "상품 이름 넣기")
+                CustomNavigationBar(categoryTitle: itemName)
                     .frame(width: viewWidth)
                 // MARK: - 전체 V스택
                 VStack(alignment: .leading) {
@@ -42,7 +42,7 @@ struct ShowPriceView: View {
                             .font(.system(size: 16, weight: .medium))
                         
                         // 가격
-                        HStack(alignment: .center, spacing: viewWidth*0.15){
+                        HStack(alignment: .center, spacing: viewWidth*0.14  ){
                             // 최소가격
                             VStack(alignment: .leading, spacing: 14){
                                 Text("최소")
@@ -98,7 +98,7 @@ struct ShowPriceView: View {
                                 Triangle()
                                     .fill(Color.underBarYellow).opacity(0.5)
                                     .frame(width:29,height: 29)
-                                    .offset(x:max(viewWidth*0.91*(percentage-0.5)-15,-viewWidth*0.91*0.5-15))
+                                    .offset(x:max(viewWidth*0.91*(percentage-0.5),-viewWidth*0.91*0.5-15))
                             } else {
                                 Triangle()
                                     .fill(Color.triangleYellow)
@@ -166,9 +166,10 @@ struct ShowPriceView: View {
                         
                     }
                 }
+                .navigationBarHidden(true)
             }
         }
-        .padding(.all)
+        
         .onAppear{
             self.tempLowPrice = priceManager.lowestPrice
             self.tempHighPrice = priceManager.hightestPrice
@@ -178,7 +179,7 @@ struct ShowPriceView: View {
 
 struct ShowPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowPriceView(priceManager: APIManger())
+        ShowPriceView(priceManager: APIManger(),itemName: .constant("사조참치") )
     }
 }
 
