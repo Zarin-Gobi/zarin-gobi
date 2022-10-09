@@ -20,56 +20,62 @@ struct AmountInputView: View {
     
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
+        ScrollView {
+            LazyVStack(pinnedViews: [.sectionHeaders]) {
+                Section(header:
+                            VStack {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             SelectProductButton(productNames: testProductNames)
                         }
-                        .padding()
+                        .padding(1)
                         .background(.white)
                         .overlay(
                             GeometryReader { geo in
-                            Color.clear.onAppear {
-                                contentSize = geo.size
-                                if contentSize.width >= UIScreen.main.bounds.width {
-                                    shouldScroll = true
+                                Color.clear.onAppear {
+                                    contentSize = geo.size
+                                    if contentSize.width >= UIScreen.main.bounds.width {
+                                        shouldScroll = true
+                                    }
                                 }
-                            }
-                        })
+                            })
                         
                     }
                     .simultaneousGesture(DragGesture(minimumDistance: shouldScroll ? 20 : 0), including: .all)
-                    .frame(maxWidth: contentSize.width, maxHeight: 63)
+                    .frame(maxWidth: contentSize.width, maxHeight: 64)
                 }
-                
-                Image("")
-                    .resizable()
-                    .frame(width: 209, height: 209)
-                    .background(.gray)
-                    .padding(.top, 52)
-                
-                MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 68)
-                
-                MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 48)
-                
-                Spacer()
-                
-                Button(action: {
+                    .frame(width: UIScreen.main.bounds.width, height: 64, alignment: .center)
+                    .position(x: 0 + UIScreen.main.bounds.width/2, y: 32)
+                ) {
+                    Image("")
+                        .resizable()
+                        .frame(width: 209, height: 209)
+                        .background(.gray)
+                        .padding(.top, 52)
                     
-                }, label: {
-                    Text("결과 보기")
-                        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 56, alignment: .center)
-                        .foregroundColor(.white)
-                })
-                .background(.gray)
-                .cornerRadius(12)
-                .padding([.leading, .trailing], 16)
-                .padding(.bottom, 40)
+                    MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 68)
+                    
+                    MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 48)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("결과 보기")
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
+                            .foregroundColor(.white)
+                    })
+                    .background(.gray)
+                    .cornerRadius(12)
+                    .padding([.leading, .trailing], 16)
+                    
+                }
                 
                 
             }
+            .navigationTitle("test").navigationBarTitleDisplayMode(.inline)
+            
         }
     }
     
@@ -86,7 +92,7 @@ struct AmountInputView_Previews: PreviewProvider {
     }
 }
 
-
+// 유저 입력을 받는 텍스트 필드
 struct MakeUserInputTextField: View {
     @Binding var productCount: String
     let textFieldHint: String
@@ -106,6 +112,7 @@ struct MakeUserInputTextField: View {
     }
 }
 
+// 카데고리 안에서 세부 품목을 고를 수 있는 버튼
 struct SelectProductButton: View {
     let productNames: [String]
     
@@ -123,9 +130,11 @@ struct SelectProductButton: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
             })
+            .padding(.bottom, 12)
+            .padding(.top, 16)
             
         }
-
+        
         .frame(minWidth: 0, maxWidth: .infinity)
         .frame(height: 56)
         .background(Rectangle().foregroundColor(.white))
