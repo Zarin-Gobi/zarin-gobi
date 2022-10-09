@@ -59,6 +59,9 @@ struct AmountInputView: View {
                     }
         }
         .navigationBarHidden(true)
+        .onTapGesture {
+            hideKeyboard()
+        }
         
     }
     
@@ -184,3 +187,12 @@ struct customNavigationBar: View {
         
     }
 }
+
+// View의 아무 곳이나 터치하면 keyboard가 사라지도록
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
