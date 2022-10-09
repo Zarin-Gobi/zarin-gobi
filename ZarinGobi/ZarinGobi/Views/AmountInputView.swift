@@ -17,6 +17,7 @@ struct AmountInputView: View {
     @State var userInputProductPrice: String = ""
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
+    @FocusState private var showKeyboard: Bool
     
     
     
@@ -34,9 +35,9 @@ struct AmountInputView: View {
                                 .background(.gray)
                                 .padding(.top, 12)
         
-                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 32)
+                            MakeUserInputTextField(productCount: $userInputProductCount, showKeyboard: $showKeyboard, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 32)
         
-                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
+                            MakeUserInputTextField(productCount: $userInputProductPrice, showKeyboard: $showKeyboard, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
         
                             Spacer(minLength: 140)
                             
@@ -60,7 +61,7 @@ struct AmountInputView: View {
         }
         .navigationBarHidden(true)
         .onTapGesture {
-            hideKeyboard()
+            showKeyboard = false
         }
         
     }
@@ -81,9 +82,12 @@ struct AmountInputView_Previews: PreviewProvider {
 // 유저 입력을 받는 텍스트 필드
 struct MakeUserInputTextField: View {
     @Binding var productCount: String
+    
     let textFieldHint: String
     let textFieldUnit: String
     
+    var showKeyboard: FocusState<Bool>.Binding
+     
     var body: some View {
         HStack {
             TextField(text: $productCount, label: {
@@ -92,6 +96,8 @@ struct MakeUserInputTextField: View {
             })
             .frame(width: 133, height: 25)
             .keyboardType(.decimalPad)
+            .focused(showKeyboard)
+            
             Text("\(textFieldUnit)")
                 .padding(.leading, 7)
         }
