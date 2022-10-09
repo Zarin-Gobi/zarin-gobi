@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
+    @ObservedObject var priceManager = APIManger()
+    
     
     let buttons: [FoodButtonName] = [.bab, .ham, .egg, .chamchi, .mandu, .gimJaban, .bongjiRamen, .cola, .water]
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -49,7 +51,13 @@ struct HomeView: View {
                     
                     LazyVGrid(columns: columns) {
                         ForEach(buttons, id: \.self) { button in
-                            FoodButtonView(title: button.title, button: button)
+                            NavigationLink {
+                                AmountInputView(goodCodes: button.codes, priceManager: self.priceManager, testProductNames: button.goodName, categoryTitle: button.title)
+                            } label: {
+                                FoodButtonView(title: button.title, button: button)
+                            }
+
+                            
                         }
                     }
                     .padding(.horizontal, 16)

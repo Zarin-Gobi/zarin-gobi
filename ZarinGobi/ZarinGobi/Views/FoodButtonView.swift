@@ -13,11 +13,7 @@ struct FoodButtonView: View {
     var button: FoodButtonName
     
     var body: some View {
-        NavigationLink {
-            AmountInputView()
-        } label: {
-            Text(title)
-        }
+        Text(title)
         .font(.system(size: 20, weight: .medium))
         .foregroundColor(.white)
         .frame(width: 114.0, height: 80.0)

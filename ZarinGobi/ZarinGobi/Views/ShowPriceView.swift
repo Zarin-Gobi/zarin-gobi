@@ -12,12 +12,15 @@ struct ShowPriceView: View {
     
     
     
+    @State var tempPrice: Int
     // 임시 최소 최대값
-    var tempLowPrice: Int = 1000
-    var tempHighPrice: Int = 10000
+    @State var tempLowPrice: Int = 0
+    @State var tempHighPrice: Int = 0
+    
+    
     
     // 임시 받아온 값
-    var tempPrice: Int = 1000
+    
     var body: some View {
         GeometryReader { geo in
             
@@ -159,7 +162,7 @@ struct ShowPriceView: View {
 
 struct ShowPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowPriceView()
+        ShowPriceView(tempPrice: 1000)
     }
 }
 
