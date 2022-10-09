@@ -56,8 +56,6 @@ struct HomeView: View {
                             } label: {
                                 FoodButtonView(title: button.title, button: button)
                             }
-
-                            
                         }
                     }
                     .padding(.horizontal, 16)

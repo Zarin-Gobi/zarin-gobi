@@ -11,13 +11,14 @@ import SwiftUI
 struct ShowPriceView: View {
     
     
-    
-    @State var tempPrice: Int
+    @ObservedObject var priceManager: APIManger
+
+    @State var tempPrice: Int = 0
     // 임시 최소 최대값
     @State var tempLowPrice: Int = 0
     @State var tempHighPrice: Int = 0
     
-    
+
     
     // 임시 받아온 값
     
@@ -156,13 +157,18 @@ struct ShowPriceView: View {
                 
                 
             }
-        }.padding(.all)
+        }
+        .padding(.all)
+        .onAppear{
+            self.tempLowPrice = priceManager.lowestPrice
+            self.tempHighPrice = priceManager.hightestPrice
+        }
     }
 }
 
 struct ShowPriceView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowPriceView(tempPrice: 1000)
+        ShowPriceView(priceManager: APIManger())
     }
 }
 
