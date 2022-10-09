@@ -13,7 +13,7 @@ struct ZarinGobiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ShowPriceView()
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
