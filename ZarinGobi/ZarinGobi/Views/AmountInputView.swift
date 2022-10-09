@@ -95,7 +95,7 @@ struct AmountInputView: View {
                                     }
                                     
                                     Rectangle()
-                                        .fill(Color("DeactivateTextfieldColor"))
+                                        .fill(focusedField == .userCount ? .black : Color("DeactivateTextfieldColor"))
                                         .frame(width: 132, height: 4)
                                         .offset(x: 0, y: 25)
                                 }
@@ -117,7 +117,7 @@ struct AmountInputView: View {
                                     .keyboardType(.numberPad)
 
                                     Rectangle()
-                                        .fill(Color("DeactivateTextfieldColor"))
+                                        .fill(focusedField == .userPrice ? .black : Color("DeactivateTextfieldColor"))
                                         .frame(width: 132, height: 4)
                                         .offset(x: 0, y: 25)
                                 }
