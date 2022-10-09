@@ -10,10 +10,10 @@ import SwiftUI
 @main
 struct ZarinGobiApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            ShowPriceView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
