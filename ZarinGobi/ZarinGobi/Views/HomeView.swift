@@ -26,8 +26,8 @@ struct HomeView: View {
                                 Text("자린고비가")
                                 Text("알려준다")
                             }
-                            .font(.system(size: 48, weight: .bold))
-                            .position(x: 100, y: 79)
+                            .font(.custom("ChosunCentennial", size: 48))
+                            .position(x: 100, y: 85)
                             .padding(.leading, 31)
                             
                             Spacer()
