@@ -81,13 +81,20 @@ struct MakeUserInputTextField: View {
      
     var body: some View {
         HStack {
-            TextField(text: $productCount, label: {
-                Text("\(textFieldHint)")
-                    .foregroundColor(.gray)
-            })
-            .frame(width: 133, height: 25)
-            .keyboardType(.decimalPad)
-            .focused(showKeyboard)
+            ZStack {
+                TextField(text: $productCount, label: {
+                    Text("\(textFieldHint)")
+                        .foregroundColor(.gray)
+                })
+                .frame(width: 133, height: 25)
+                .keyboardType(.decimalPad)
+                .focused(showKeyboard)
+                
+                Rectangle()
+                    .fill(Color("DeactivateTextfieldColor"))
+                    .frame(width: 132, height: 4)
+                    .offset(x: 0, y: 25)
+            }
             
             Text("\(textFieldUnit)")
                 .padding(.leading, 7)
@@ -100,24 +107,6 @@ struct SelectProductButton: View {
     let productNames: [String]
     
     var body: some View {
-//        ForEach(productNames, id: \.self) { title in
-//            Button(action: {
-//
-//            }, label: {
-//                Text("\(title)")
-//                    .font(.system(size: 16, weight: .medium))
-//                    .foregroundColor(.black)
-//                    .padding([.leading, .trailing], 14)
-//                    .padding([.top, .bottom], 8)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 20)
-//                            .stroke(Color.gray, lineWidth: 1)
-//                    )
-//            })
-//            .padding(.bottom, 12)
-//            .padding(.top, 16)
-//
-//        }
         
         ForEach(0..<productNames.count) { index in
             Button(action: {
