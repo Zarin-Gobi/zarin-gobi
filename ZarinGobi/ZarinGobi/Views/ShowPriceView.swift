@@ -117,8 +117,8 @@ struct ShowPriceView: View {
                 
                 // MARK: - 3번째 부분
                 VStack(alignment: .leading, spacing: viewHeight*0.029){
+                    let percentage = CGFloat(tempPrice-tempLowPrice)/CGFloat(tempHighPrice-tempLowPrice)
                     HStack{
-                        let percentage = CGFloat(tempPrice-tempLowPrice)/CGFloat(tempHighPrice-tempLowPrice)
                         if percentage >= 0.7 {
                             Text("에잉 쯧,")
                             Text("안 사!")
@@ -146,11 +146,23 @@ struct ShowPriceView: View {
                             Text("음, 그럭저럭...")
                         }
                     }.font(.system(size: 36, weight: .bold))
+                    if percentage >= 0.7 {
+                        Image("nope")
+                            .resizable()
+                            .frame(width: viewWidth*0.91, height: viewHeight*0.42)
+                            .padding(.bottom,50)
+                    } else if percentage <= 0.3{
+                        Image("soso")
+                            .resizable()
+                            .frame(width: viewWidth*0.91, height: viewHeight*0.42)
+                            .padding(.bottom,50)
+                    } else {
+                        Image("buy")
+                            .resizable()
+                            .frame(width: viewWidth*0.91, height: viewHeight*0.42)
+                            .padding(.bottom,50)
+                    }
                     
-                    Image("zaringobi")
-                        .resizable()
-                        .frame(width: viewWidth*0.91, height: viewHeight*0.42)
-                        .padding(.bottom,50)
                 }
                 
                 
