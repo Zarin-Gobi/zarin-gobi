@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct AmountInputView: View {
+    enum Field: Hashable {
+        case userCount
+        case userPrice
+    }
     
     @State var userInputProductCount: String = ""
     @State var userInputProductPrice: String = ""
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
     @FocusState private var showKeyboard: Bool
-    
+    @State var keyboardText = "다음"
+    @FocusState private var focusedField: Field?
+    @FocusState private var showKeyboardCount: Bool
+    @FocusState private var showKeyboardPrice: Bool
     @State var goodCodes: [Int] = []
     @State var selectedButtonIndex = 0
     @ObservedObject var priceManager: APIManger
@@ -45,10 +52,84 @@ struct AmountInputView: View {
                                 .background(.gray)
                                 .padding(.top, 12)
         
-                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개", showKeyboard: $showKeyboard).padding(.top, 32)
+                            HStack {
+                                ZStack {
+                                    TextField(text: $userInputProductCount, label: {
+                                        Text("개수가 몇 개냐?")
+                                            .foregroundColor(.gray)
+                                    })
+                                    .font(.custom("ChosunCentennial", size: 20))
+                                    .frame(width: 133, height: 25)
+                                    .focused($focusedField, equals: .userCount)
+                                    .keyboardType(.numberPad)
+                                    .toolbar {
+                                        ToolbarItemGroup(placement: .keyboard) {
+                                            if keyboardText == "결과 보기" {
+                                                if userInputProductPrice.isEmpty {
+                                                    Button(keyboardText){
+                                                        
+                                                    }
+                                                    .disabled(true)
+                                                }else {
+                                                    Button(keyboardText){
+                                                        focusedField = .none
+                                                    }.disabled(false)
+                                                        .foregroundColor(.white)
+                                                        .frame(width: 800, height: 45)
+                                                        .background(.black)
+                                                }
+                                            } else if userInputProductCount == "" {
+                                                Button(keyboardText){
+                                                    
+                                                }.disabled(true)
+                                            } else {
+                                                Button(keyboardText){
+                                                    if !userInputProductCount.isEmpty || !userInputProductPrice.isEmpty {
+                                                        keyboardText = "결과 보기"
+                                                    }
+                                                    focusedField = .userPrice
+                                                    
+                                                }.disabled(false)
+                                                    .foregroundColor(.white)
+                                                    .frame(width: 800, height: 45)
+                                                    .background(.black)
+                                            }
+                                            
+                                        }
+                                    }
+                                    
+                                    Rectangle()
+                                        .fill(focusedField == .userCount ? .black : Color("DeactivateTextfieldColor"))
+                                        .frame(width: 132, height: 4)
+                                        .offset(x: 0, y: 25)
+                                }
+                                
+                                Text("개")
+                                    .padding(.leading, 7)
+                            }.padding(.top, 32)
         
-                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원", showKeyboard: $showKeyboard).padding(.top, 61)
-        
+                            
+                            HStack {
+                                ZStack {
+                                    TextField(text: $userInputProductPrice, label: {
+                                        Text("가격이 얼마냐?")
+                                            .foregroundColor(.gray)
+                                    })
+                                    .font(.custom("ChosunCentennial", size: 20))
+                                    .frame(width: 133, height: 25)
+                                    .focused($focusedField, equals: .userPrice)
+                                    .keyboardType(.numberPad)
+
+                                    Rectangle()
+                                        .fill(focusedField == .userPrice ? .black : Color("DeactivateTextfieldColor"))
+                                        .frame(width: 132, height: 4)
+                                        .offset(x: 0, y: 25)
+                                }
+
+                                Text("원")
+                                    .padding(.leading, 7)
+                            }.padding(.top, 61)
+                            
                             Spacer(minLength: 140)
                             
                             NavigationLink(destination: ShowPriceView(priceManager: priceManager, tempPrice: getUserPrice(userInputProductCount, userInputProductPrice)), label: {
@@ -69,8 +150,11 @@ struct AmountInputView: View {
             
         }
         .navigationBarHidden(true)
+        .onAppear() {
+            focusedField = .userCount
+        }
         .onTapGesture {
-            showKeyboard = false
+            focusedField = .none
         }
     }
     
