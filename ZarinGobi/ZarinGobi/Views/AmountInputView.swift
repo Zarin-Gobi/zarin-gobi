@@ -57,7 +57,6 @@ struct AmountInputView: View {
                     
                     MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
                     
-                    Spacer()
                     
                     Button(action: {
                         
@@ -138,5 +137,50 @@ struct SelectProductButton: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .frame(height: 56)
         .background(Rectangle().foregroundColor(.white))
+    }
+}
+
+
+struct customNavigationBar: View {
+    let testProductNames: [String]
+    
+    @Binding var shouldScroll: Bool
+    @Binding var contentSize: CGSize
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Image(systemName: "arrow")
+                Spacer()
+                Text("즉석밥")
+                Spacer()
+                Spacer()
+            }.frame(width: .infinity, height: 44)
+            
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        SelectProductButton(productNames: testProductNames)
+                    }
+                    .padding(1)
+                    .background(.white)
+                    .overlay(
+                        GeometryReader { geo in
+                            Color.clear.onAppear {
+                                contentSize = geo.size
+                                if contentSize.width >= UIScreen.main.bounds.width {
+                                    shouldScroll = true
+                                }
+                            }
+                        })
+                    
+                }
+                .simultaneousGesture(DragGesture(minimumDistance: shouldScroll ? 20 : 0), including: .all)
+                .frame(maxWidth: contentSize.width, maxHeight: 64)
+            }
+            .frame(width: UIScreen.main.bounds.width, height: 64, alignment: .center)
+            
+        }.frame(width: .infinity, height: 107)
+        
     }
 }
