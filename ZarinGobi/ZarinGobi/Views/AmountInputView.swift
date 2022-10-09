@@ -25,66 +25,41 @@ struct AmountInputView: View {
         VStack {
             customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize)
             Divider()
-        }
-        .position(x: UIScreen.main.bounds.width/2, y: 53)
-            .navigationBarHidden(true)
+            
+            ScrollView {
+                        LazyVStack(pinnedViews: [.sectionHeaders]) {
+                            Image("")
+                                .resizable()
+                                .frame(width: 240, height: 240)
+                                .background(.gray)
+                                .padding(.top, 12)
         
-//        ScrollView {
-//            LazyVStack(pinnedViews: [.sectionHeaders]) {
-//                Section(header:
-//                            VStack {
-//                    ScrollView(.horizontal, showsIndicators: false) {
-//                        HStack {
-//                            SelectProductButton(productNames: testProductNames)
-//                        }
-//                        .padding(1)
-//                        .background(.white)
-//                        .overlay(
-//                            GeometryReader { geo in
-//                                Color.clear.onAppear {
-//                                    contentSize = geo.size
-//                                    if contentSize.width >= UIScreen.main.bounds.width {
-//                                        shouldScroll = true
-//                                    }
-//                                }
-//                            })
-//
-//                    }
-//                    .simultaneousGesture(DragGesture(minimumDistance: shouldScroll ? 20 : 0), including: .all)
-//                    .frame(maxWidth: contentSize.width, maxHeight: 64)
-//                }
-//                    .frame(width: UIScreen.main.bounds.width, height: 64, alignment: .center)
-//                    .position(x: 0 + UIScreen.main.bounds.width/2, y: 32)
-//                ) {
-//                    Image("")
-//                        .resizable()
-//                        .frame(width: 240, height: 240)
-//                        .background(.gray)
-//                        .padding(.top, 12)
-//
-//                    MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 32)
-//
-//                    MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
-//
-//
-//                    Button(action: {
-//
-//                    }, label: {
-//                        Text("결과 보기")
-//                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
-//                            .foregroundColor(.white)
-//                    })
-//                    .background(.gray)
-//                    .cornerRadius(12)
-//                    .padding([.leading, .trailing], 16)
-//
-//                }
-//
-//
-//            }
-//            .navigationTitle("test").navigationBarTitleDisplayMode(.inline)
-//
-//        }
+                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 32)
+        
+                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
+        
+                            Spacer(minLength: 140)
+                            
+                            Button(action: {
+        
+                            }, label: {
+                                Text("결과 보기")
+                                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
+                                    .foregroundColor(.white)
+                            })
+                            .background(.gray)
+                            .cornerRadius(12)
+                            .padding([.leading, .trailing], 16)
+                            Spacer(minLength: 40)
+            
+            
+                        }
+                        .navigationTitle("test").navigationBarTitleDisplayMode(.inline)
+            
+                    }
+        }
+        .navigationBarHidden(true)
+        
     }
     
     
@@ -112,7 +87,7 @@ struct MakeUserInputTextField: View {
                 Text("\(textFieldHint)")
                     .foregroundColor(.gray)
             })
-            .frame(width: 124, height: 24)
+            .frame(width: 133, height: 25)
             .keyboardType(.decimalPad)
             Text("\(textFieldUnit)")
                 .padding(.leading, 7)
@@ -130,6 +105,7 @@ struct SelectProductButton: View {
                 
             }, label: {
                 Text("\(title)")
+                    .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.black)
                     .padding([.leading, .trailing], 14)
                     .padding([.top, .bottom], 8)
@@ -178,8 +154,8 @@ struct customNavigationBar: View {
                 
                 Text("\(categoryTitle)")
                     .font(.system(size: 17, weight: .semibold))
-                    .padding([.top, .bottom], 11)
-            }
+                    .padding([.top], 11)
+            }.frame(height: 44)
             
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
