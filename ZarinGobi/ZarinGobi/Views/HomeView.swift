@@ -33,7 +33,7 @@ struct HomeView: View {
                                         }
                                         .stroke(style: StrokeStyle(lineWidth: 20)) // adjust to your liking
                                         //TODO: 언더라인 색상 변경 해야 함
-                                        .foregroundColor(FoodButtonName.egg.backgroundColor)
+                                        .foregroundColor(Color("zaringobiColor"))
                                     })
                                 Text("알려준다")
                             }

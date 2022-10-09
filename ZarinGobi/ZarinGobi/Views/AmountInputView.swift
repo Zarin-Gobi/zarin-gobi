@@ -94,6 +94,7 @@ struct MakeUserInputTextField: View {
                     Text("\(textFieldHint)")
                         .foregroundColor(.gray)
                 })
+                .font(.custom("ChosunCentennial", size: 20))
                 .frame(width: 133, height: 25)
                 .keyboardType(.decimalPad)
                 .focused(showKeyboard)
