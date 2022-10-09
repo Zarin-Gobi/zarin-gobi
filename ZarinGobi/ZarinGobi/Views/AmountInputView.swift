@@ -40,16 +40,8 @@ struct AmountInputView: View {
         
                             Spacer(minLength: 140)
                             
-                            Button(action: {
-        
-                            }, label: {
-                                Text("결과 보기")
-                                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
-                                    .foregroundColor(.white)
-                            })
-                            .background(.gray)
-                            .cornerRadius(12)
-                            .padding([.leading, .trailing], 16)
+                            ShowResultButton()
+                            
                             Spacer(minLength: 40)
             
             
@@ -108,11 +100,30 @@ struct SelectProductButton: View {
     let productNames: [String]
     
     var body: some View {
-        ForEach(productNames, id: \.self) { title in
+//        ForEach(productNames, id: \.self) { title in
+//            Button(action: {
+//
+//            }, label: {
+//                Text("\(title)")
+//                    .font(.system(size: 16, weight: .medium))
+//                    .foregroundColor(.black)
+//                    .padding([.leading, .trailing], 14)
+//                    .padding([.top, .bottom], 8)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 20)
+//                            .stroke(Color.gray, lineWidth: 1)
+//                    )
+//            })
+//            .padding(.bottom, 12)
+//            .padding(.top, 16)
+//
+//        }
+        
+        ForEach(0..<productNames.count) { index in
             Button(action: {
                 
             }, label: {
-                Text("\(title)")
+                Text("\(productNames[index])")
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.black)
                     .padding([.leading, .trailing], 14)
@@ -122,6 +133,7 @@ struct SelectProductButton: View {
                             .stroke(Color.gray, lineWidth: 1)
                     )
             })
+            .id(index)
             .padding(.bottom, 12)
             .padding(.top, 16)
             
@@ -190,5 +202,21 @@ struct customNavigationBar: View {
             
         }.frame(width: UIScreen.main.bounds.width, height: 107)
         
+    }
+}
+
+struct ShowResultButton: View {
+    
+    var body: some View {
+        Button(action: {
+
+        }, label: {
+            Text("결과 보기")
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
+                .foregroundColor(.white)
+        })
+        .background(.gray)
+        .cornerRadius(12)
+        .padding([.leading, .trailing], 16)
     }
 }
