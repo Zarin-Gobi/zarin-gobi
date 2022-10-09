@@ -197,15 +197,15 @@ struct customNavigationBar: View {
 struct ShowResultButton: View {
     
     var body: some View {
-        Button(action: {
-
-        }, label: {
+        NavigationLink(destination: ShowPriceView(), label: {
             Text("결과 보기")
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 56,maxHeight: 56, alignment: .center)
                 .foregroundColor(.white)
+                .background(.gray)
+                .cornerRadius(12)
+                .padding([.leading, .trailing], 16)
         })
-        .background(.gray)
-        .cornerRadius(12)
-        .padding([.leading, .trailing], 16)
+
+        
     }
 }
