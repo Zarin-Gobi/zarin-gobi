@@ -76,10 +76,9 @@ struct AmountInputView: View {
     
     public func getUserPrice(_ totalAmount: String,  _ totalPrice: String) -> Int{
             guard totalAmount != "", totalPrice != "" else{
-                print(priceManager.lowestPrice , priceManager.hightestPrice)
+                
                 return 0
             }
-        print(priceManager.lowestPrice , priceManager.hightestPrice)
             return Int(totalPrice)! / Int(totalAmount)!
         }
     
@@ -226,7 +225,6 @@ struct customNavigationBar: View {
         
             .onAppear{
                 priceManager.loadData(goodCodes[selectedButtonIndex])
-                print(priceManager.lowestPrice, priceManager.hightestPrice)
             }
     }
 }
