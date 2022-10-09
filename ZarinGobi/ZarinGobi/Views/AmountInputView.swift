@@ -9,16 +9,15 @@ import SwiftUI
 
 struct AmountInputView: View {
     
-    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
-    let testProductImages: [String] = ["rice1", "rice2"]
-    let categoryTitle: String = "즉석밥"
-    
     @State var userInputProductCount: String = ""
     @State var userInputProductPrice: String = ""
     @State private var contentSize: CGSize = .zero
     @State var shouldScroll: Bool = false
     @FocusState private var showKeyboard: Bool
     
+    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
+    let testProductImages: [String] = ["rice1", "rice2"]
+    let categoryTitle: String = "즉석밥"
     
     
     var body: some View {
@@ -35,9 +34,9 @@ struct AmountInputView: View {
                                 .background(.gray)
                                 .padding(.top, 12)
         
-                            MakeUserInputTextField(productCount: $userInputProductCount, showKeyboard: $showKeyboard, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 32)
+                            MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개", showKeyboard: $showKeyboard).padding(.top, 32)
         
-                            MakeUserInputTextField(productCount: $userInputProductPrice, showKeyboard: $showKeyboard, textFieldHint: "얼마냐?", textFieldUnit: "원").padding(.top, 61)
+                            MakeUserInputTextField(productCount: $userInputProductPrice, textFieldHint: "얼마냐?", textFieldUnit: "원", showKeyboard: $showKeyboard).padding(.top, 61)
         
                             Spacer(minLength: 140)
                             
@@ -193,12 +192,3 @@ struct customNavigationBar: View {
         
     }
 }
-
-// View의 아무 곳이나 터치하면 keyboard가 사라지도록
-#if canImport(UIKit)
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-#endif
