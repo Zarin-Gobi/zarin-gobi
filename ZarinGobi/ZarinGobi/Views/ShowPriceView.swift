@@ -10,14 +10,10 @@ import SwiftUI
 
 struct ShowPriceView: View {
     
-    
-    
     @State var tempPrice: Int
     // 임시 최소 최대값
     @State var tempLowPrice: Int = 0
     @State var tempHighPrice: Int = 0
-    
-    
     
     // 임시 받아온 값
     
@@ -42,10 +38,10 @@ struct ShowPriceView: View {
                         // 최소가격
                         VStack(alignment: .leading, spacing: 14){
                             Text("최소")
-                                .font(.system(size: 24, weight: .medium))
+                                .font(.custom("ChosunCentennial", size: 24))
                             
                             Text("\(tempLowPrice)원")
-                                .font(.system(size: 36,weight: .bold))
+                                .font(.custom("ChosunCentennial", size: 36))
                                 .background( GeometryReader { geo in
                                     Path { path in
                                         path.move(to: CGPoint(x: 0, y: geo.size.height-5))
@@ -59,11 +55,11 @@ struct ShowPriceView: View {
                         // 최대가격
                         VStack(alignment: .leading,spacing: 14){
                             Text("최대")
-                                .font(.system(size: 24, weight: .medium))
+                                .font(.custom("ChosunCentennial", size: 24))
                             
                             
                             Text("\(tempHighPrice)원")
-                                .font(.system(size: 36,weight: .bold))
+                                .font(.custom("ChosunCentennial", size: 36))
                                 .background( GeometryReader { geo in
                                     Path { path in
                                         path.move(to: CGPoint(x: 0, y: geo.size.height-5))
@@ -99,22 +95,18 @@ struct ShowPriceView: View {
                             Triangle()
                                 .fill(Color.underBarGray).opacity(0.5)
                                 .frame(width:29,height: 29)
-                                .offset(x:min(viewWidth*0.91*(percentage-0.5)-15,viewWidth*0.91*0.5-15))
-                                
-                        }
-                        
+                                .offset(x:min(viewWidth*0.91*(percentage-0.5)-15,viewWidth*0.91*0.5-15))                        }
                         Image("Line")
                         HStack(alignment: .center, spacing: viewWidth*0.75) {
                             Text("싼 거")
+                                .font(.custom("ChosunCentennial", size: 14))
                             Text("비싼 거")
+                                .font(.custom("ChosunCentennial", size: 14))
                         }
                     }
-                    
-                    
-                    
                 }
                 Spacer(minLength: viewHeight*0.055)
-                
+                // dfadfdfd
                 // MARK: - 3번째 부분
                 VStack(alignment: .leading, spacing: viewHeight*0.029){
                     let percentage = CGFloat(tempPrice-tempLowPrice)/CGFloat(tempHighPrice-tempLowPrice)
@@ -145,7 +137,7 @@ struct ShowPriceView: View {
                         } else {
                             Text("음, 그럭저럭...")
                         }
-                    }.font(.system(size: 36, weight: .bold))
+                    }.font(.custom("ChosunCentennial", size: 14))
                     if percentage >= 0.7 {
                         Image("nope")
                             .resizable()
@@ -164,11 +156,9 @@ struct ShowPriceView: View {
                     }
                     
                 }
-                
-                
-                
             }
         }.padding(.all)
+            
     }
 }
 
