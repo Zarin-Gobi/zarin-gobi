@@ -90,5 +90,28 @@ enum FoodButtonName: String {
         }
     
     }
+    var goodImage: [String] {
+        switch self {
+        case .bab:
+            return ["hatban", "ottogibab"]
+        case .ham:
+            return ["spamClassic"]
+        case .egg:
+            return []
+        case .chamchi:
+            return ["dongwonChamchi", "sazoChamchi"]
+        case .mandu:
+            return ["gohyangMandu","bibigoKingGyoza"]
+        case .gimJaban:
+            return []
+        case .bongjiRamen:
+            return ["samyangRamen","JinRamen","shinRamen"]
+        case .cola:
+            return ["pepsi","cocaCola" , "chilsungCider"]
+        case .water:
+            return ["samdasu"]
+        }
+    
+    }
     
 }
