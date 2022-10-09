@@ -144,8 +144,7 @@ struct AmountInputView: View {
             focusedField = .userCount
         }
         .onTapGesture {
-            showKeyboardPrice = false
-            showKeyboardCount = false
+            focusedField = .none
         }
         
     }
