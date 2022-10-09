@@ -10,7 +10,7 @@ import CoreData
 
 struct HomeView: View {
     
-    let buttons = ["즉석밥", "햄", "참치", "김자반", "만두", "계란", "콜라", "생수", "봉지 라면"]
+    let buttons: [FoodButtonName] = [.bab, .ham, .egg, .chamchi, .mandu, .gimJaban, .bongjiRamen, .cola, .water]
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -36,7 +36,7 @@ struct HomeView: View {
                 
                 LazyVGrid(columns: columns) {
                     ForEach(buttons, id: \.self) { button in
-                        FoodButtonView(title: button)
+                        FoodButtonView(title: button.title, button: button)
                     }
                 }
                 .padding(.horizontal, 16)

@@ -10,6 +10,7 @@ import SwiftUI
 struct FoodButtonView: View {
     
     var title: String
+    var button: FoodButtonName
     
     var body: some View {
         NavigationLink {
@@ -20,6 +21,7 @@ struct FoodButtonView: View {
         .font(.system(size: 20, weight: .medium))
         .foregroundColor(.white)
         .frame(width: 114.0, height: 80.0)
+        //TODO: 백그라운드 배경 변경
         .background(.black)
         .cornerRadius(12)
         
@@ -28,6 +30,6 @@ struct FoodButtonView: View {
 
 struct FoodButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodButtonView(title: "즉석밥")
+        FoodButtonView(title: "즉석밥", button: .bongjiRamen)
     }
 }
