@@ -36,7 +36,7 @@ enum FoodButtonName: String {
         case .gimJaban:
             return Color("gimjabanButton")
         case .bongjiRamen:
-            return Color("bongjiRamenButton")
+            return Color("bongjiramenButton")
         case .cola:
             return Color("colaButton")
         default :
