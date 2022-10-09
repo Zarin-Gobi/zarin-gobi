@@ -21,7 +21,6 @@ struct FoodButtonView: View {
         .font(.system(size: 20, weight: .medium))
         .foregroundColor(.white)
         .frame(width: 114.0, height: 80.0)
-        //TODO: 백그라운드 배경 변경
         .background(button.backgroundColor)
         .cornerRadius(12)
         

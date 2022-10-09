@@ -24,6 +24,15 @@ struct HomeView: View {
                         HStack{
                             VStack(alignment: .leading){
                                 Text("자린고비가")
+                                    .background( GeometryReader { geo in
+                                        Path { path in
+                                            path.move(to: CGPoint(x: 0, y: geo.size.height - 10))
+                                            path.addLine(to: CGPoint(x: geo.size.width - 45, y: geo.size.height-5))
+                                        }
+                                        .stroke(style: StrokeStyle(lineWidth: 20)) // adjust to your liking
+                                        //TODO: 언더라인 색상 변경 해야 함
+                                        .foregroundColor(FoodButtonName.egg.backgroundColor)
+                                    })
                                 Text("알려준다")
                             }
                             .font(.custom("ChosunCentennial", size: 48))

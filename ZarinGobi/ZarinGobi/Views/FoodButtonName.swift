@@ -22,7 +22,6 @@ enum FoodButtonName: String {
     var title: String { self.rawValue }
     
     var backgroundColor: Color {
-        //TODO: 버튼 컬러 색상 변경
         switch self {
         case .bab:
             return Color("babButton")
