@@ -49,9 +49,9 @@ struct AmountInputView: View {
                 ) {
                     Image("")
                         .resizable()
-                        .frame(width: 209, height: 209)
+                        .frame(width: 240, height: 240)
                         .background(.gray)
-                        .padding(.top, 52)
+                        .padding(.top, 12)
                     
                     MakeUserInputTextField(productCount: $userInputProductCount, textFieldHint: "개수가 몇개냐?", textFieldUnit: "개").padding(.top, 68)
                     
