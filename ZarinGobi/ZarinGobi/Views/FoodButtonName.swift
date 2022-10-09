@@ -17,7 +17,7 @@ enum FoodButtonName: String {
     case gimJaban = "김자반"
     case bongjiRamen = "봉지 라면"
     case cola = "콜라"
-    case water = "물"
+    case water = "생수"
     
     var title: String { self.rawValue }
     
@@ -25,23 +25,23 @@ enum FoodButtonName: String {
         //TODO: 버튼 컬러 색상 변경
         switch self {
         case .bab:
-            return Color(.black)
+            return Color("babButton")
         case .ham:
-            return Color(.black)
+            return Color("hamButton")
         case .egg:
-            return Color(.black)
+            return Color("eggButton")
         case .chamchi:
-            return Color(.black)
+            return Color("chamchiButton")
         case .mandu:
-            return Color(.black)
+            return Color("manduButton")
         case .gimJaban:
-            return Color(.black)
+            return Color("gimjabanButton")
         case .bongjiRamen:
-            return Color(.black)
+            return Color("bongjiRamenButton")
         case .cola:
-            return Color(.black)
+            return Color("colaButton")
         default :
-            return Color(.black)
+            return Color("waterButton")
         }
     }
     

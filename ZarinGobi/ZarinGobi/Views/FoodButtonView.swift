@@ -22,7 +22,7 @@ struct FoodButtonView: View {
         .foregroundColor(.white)
         .frame(width: 114.0, height: 80.0)
         //TODO: 백그라운드 배경 변경
-        .background(.black)
+        .background(button.backgroundColor)
         .cornerRadius(12)
         
     }
@@ -30,6 +30,6 @@ struct FoodButtonView: View {
 
 struct FoodButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodButtonView(title: "즉석밥", button: .bongjiRamen)
+        FoodButtonView(title: "즉석밥", button: .bab)
     }
 }

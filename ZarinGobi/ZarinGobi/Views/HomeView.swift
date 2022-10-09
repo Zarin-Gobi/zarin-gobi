@@ -15,33 +15,38 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
-                ZStack{
-                    HStack{
-                        VStack(alignment: .leading){
-                            Text("자린고비가")
-                            Text("알려준다")
+            ZStack {
+                Image("Background")
+                    .resizable()
+                    .padding(.vertical, -50.0)
+                VStack{
+                    ZStack{
+                        HStack{
+                            VStack(alignment: .leading){
+                                Text("자린고비가")
+                                Text("알려준다")
+                            }
+                            .font(.system(size: 48, weight: .bold))
+                            .position(x: 100, y: 79)
+                            .padding(.leading, 31)
+                            
+                            Spacer()
                         }
-                        .font(.system(size: 48, weight: .bold))
-                        .position(x: 100, y: 79)
-                        .padding(.leading, 31)
-                        
-                        Spacer()
+                        Image("HomeViewImage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.bottom, -10)
                     }
-                    Image("zaringobi")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(.bottom, -10)
-                }
-                
-                LazyVGrid(columns: columns) {
-                    ForEach(buttons, id: \.self) { button in
-                        FoodButtonView(title: button.title, button: button)
+                    
+                    LazyVGrid(columns: columns) {
+                        ForEach(buttons, id: \.self) { button in
+                            FoodButtonView(title: button.title, button: button)
+                        }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom)
+                    
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom)
-                
             }
         }
     }
