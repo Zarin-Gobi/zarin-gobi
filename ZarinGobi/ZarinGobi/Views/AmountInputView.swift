@@ -27,11 +27,11 @@ struct AmountInputView: View {
     @ObservedObject var priceManager: APIManger
     
     @State var testProductNames: [String] = []
-//    @State var testProductImages: [String] = []
+    @State var testProductImages: [String] = []
     @State var categoryTitle: String = ""
     
 //    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
-    let testProductImages: [String] = ["rice1", "rice2"]
+//    let testProductImages: [String] = ["rice1", "rice2"]
 //    let categoryTitle: String = "즉석밥"
 //
     @State var lowest: Int = 0
@@ -46,7 +46,7 @@ struct AmountInputView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
-                            Image("")
+                            Image(testProductImages[selectedButtonIndex])
                                 .resizable()
                                 .frame(width: 240, height: 240)
                                 .background(.gray)

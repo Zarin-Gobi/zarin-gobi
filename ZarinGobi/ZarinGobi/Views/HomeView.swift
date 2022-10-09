@@ -52,7 +52,7 @@ struct HomeView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(buttons, id: \.self) { button in
                             NavigationLink {
-                                AmountInputView(goodCodes: button.codes, priceManager: self.priceManager, testProductNames: button.goodName, categoryTitle: button.title)
+                                AmountInputView(goodCodes: button.codes, priceManager: self.priceManager, testProductNames: button.goodName, testProductImages: button.goodImage, categoryTitle: button.title)
                             } label: {
                                 FoodButtonView(title: button.title, button: button)
                             }
