@@ -26,7 +26,7 @@ struct AmountInputView: View {
             customNavigationBar(testProductNames: testProductNames, categoryTitle: categoryTitle, shouldScroll: $shouldScroll, contentSize: $contentSize)
             Divider()
             
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
                             Image("")
                                 .resizable()
