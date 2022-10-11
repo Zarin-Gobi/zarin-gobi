@@ -30,10 +30,7 @@ struct AmountInputView: View {
     @State var testProductImages: [String] = []
     @State var categoryTitle: String = ""
     
-//    let testProductNames: [String] = ["햇반 (210g)", "오뚜기밥 (210g)"]
-//    let testProductImages: [String] = ["rice1", "rice2"]
-//    let categoryTitle: String = "즉석밥"
-//
+
     @State var lowest: Int = 0
     @State var highest: Int = 0
     @State var reloader: Bool = false

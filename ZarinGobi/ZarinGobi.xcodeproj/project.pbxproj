@@ -10,6 +10,7 @@
 		7977A21F28F172B100B4D837 /* FoodButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A21E28F172B100B4D837 /* FoodButtonView.swift */; };
 		7977A22128F1A3F300B4D837 /* FoodButtonName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977A22028F1A3F300B4D837 /* FoodButtonName.swift */; };
 		7977A22328F2699F00B4D837 /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7977A22228F2699F00B4D837 /* ChosunCentennial_otf.otf */; };
+		D4049DD128F5B513007E442E /* PrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4049DD028F5B513007E442E /* PrepareView.swift */; };
 		D496577628F2B79E00FE4937 /* goodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496577528F2B79E00FE4937 /* goodItem.swift */; };
 		D496577828F2B7BE00FE4937 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D496577728F2B7BE00FE4937 /* APIManager.swift */; };
 		D4C20E1528F1442B00182779 /* ZarinGobiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C20E1428F1442B00182779 /* ZarinGobiApp.swift */; };
@@ -27,6 +28,7 @@
 		7977A22028F1A3F300B4D837 /* FoodButtonName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonName.swift; sourceTree = "<group>"; };
 		7977A22228F2699F00B4D837 /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
 		7977A22428F26A3C00B4D837 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D4049DD028F5B513007E442E /* PrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareView.swift; sourceTree = "<group>"; };
 		D496577528F2B79E00FE4937 /* goodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goodItem.swift; sourceTree = "<group>"; };
 		D496577728F2B7BE00FE4937 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		D4C20E1128F1442B00182779 /* ZarinGobi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZarinGobi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 				7977A21E28F172B100B4D837 /* FoodButtonView.swift */,
 				D4FF8A3628F1497D00FE6807 /* AmountInputView.swift */,
 				D4FF8A3828F149BD00FE6807 /* ShowPriceView.swift */,
+				D4049DD028F5B513007E442E /* PrepareView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4C20E1E28F1442B00182779 /* Persistence.swift in Sources */,
+				D4049DD128F5B513007E442E /* PrepareView.swift in Sources */,
 				D496577628F2B79E00FE4937 /* goodItem.swift in Sources */,
 				D496577828F2B7BE00FE4937 /* APIManager.swift in Sources */,
 				D4C20E1728F1442B00182779 /* HomeView.swift in Sources */,
