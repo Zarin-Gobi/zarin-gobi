@@ -68,12 +68,12 @@ struct AmountInputView: View {
                                                     }
                                                     .disabled(true)
                                                 }else {
-                                                    Button(keyboardText){
-                                                        focusedField = .none
-                                                    }.disabled(false)
-                                                        .foregroundColor(.white)
-                                                        .frame(width: 800, height: 45)
-                                                        .background(.black)
+                                                    NavigationLink(destination: ShowPriceView(priceManager: priceManager, tempPrice: getUserPrice(userInputProductCount, userInputProductPrice),itemName: $testProductNames[selectedButtonIndex]), label: {
+                                                        Text(keyboardText)
+                                                            .foregroundColor(.white)
+                                                            .frame(width: 800, height: 45)
+                                                            .background(.black)
+                                                    }).disabled(false)
                                                 }
                                             } else if userInputProductCount == "" {
                                                 Button(keyboardText){
